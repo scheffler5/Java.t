@@ -190,5 +190,28 @@ public class UserDAO {
         }
         return null;
     } 
-    
+    public User BuscarUserLogin(String user, String senha) {
+    try {
+        String sql = "SELECT * FROM usuarios WHERE User = ? AND Senha = ?";
+        java.sql.PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setString(1, user);
+        stmt.setString(2, senha);
+
+        ResultSet rs = stmt.executeQuery();
+        User obj = new User();
+
+        if (rs.next()) {
+            obj.setUser(rs.getString("User"));
+            obj.setSenha(rs.getString("Senha"));
+            return obj; // Retorna o usuário se encontrado
+        } else {
+            JOptionPane.showMessageDialog(null, "Usuário ou senha incorretos!");
+        }
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Erro ao buscar usuário: " + e);
+    }
+    return null; // Retorna null se o login falhar
+}
+
 }

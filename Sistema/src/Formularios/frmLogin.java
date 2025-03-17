@@ -4,7 +4,8 @@
  */
 package Formularios;
 
-import Classes.Dados;
+import DAO.UserDAO;
+import Model.User;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -16,13 +17,17 @@ import javax.swing.JOptionPane;
  * @author DP TI
  */
 public class frmLogin extends javax.swing.JFrame {
-
+    protected String user;
     /**
      * Creates new form frmLogin
      */
     public frmLogin() {
+        
         initComponents();
+        
     }
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -205,18 +210,34 @@ public class frmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btSairActionPerformed
 
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarActionPerformed
-        Dados msdados = new Dados();
+        /*Dados msdados = new Dados();
         if (!msdados.ValidarUsuario(txtUsuario.getText(), new String(txtSenha.getPassword()))){
             JOptionPane.showMessageDialog(rootPane, "Usuario e Senhas Incorretos ");
             txtUsuario.setText("");
             txtSenha.setText("");
             txtUsuario.requestFocusInWindow();
-            return;}
-        frmPrincipal mPrincipal = new frmPrincipal();
-        //grewdthis.setVisible(false);
-        this.dispose();
-        mPrincipal.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        mPrincipal.setVisible(true);
+            return;}*/
+        user = txtUsuario.getText();
+        String senha = txtSenha.getText();
+
+        UserDAO dao = new UserDAO();
+        User obj = dao.BuscarUserLogin(user, senha);
+        
+        if (obj != null) {
+            frmPrincipal mPrincipal = new frmPrincipal(user);
+            frmPEP pep = new frmPEP(user);
+//grewdthis.setVisible(false);
+            this.dispose();
+            mPrincipal.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            mPrincipal.setVisible(true);
+            
+        } else {
+            JOptionPane.showMessageDialog(null, "Usuário ou senha incorretos!");
+        }
+
+            
+        
+        
             
             
             

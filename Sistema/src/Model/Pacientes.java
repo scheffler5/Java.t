@@ -25,6 +25,17 @@ public class Pacientes {
     private String NomePai;
     private String EstadoCivil;
     private String Email;
+    private String idade;  
+
+ 
+    public String getIdade() {
+        return idade;
+    }
+
+
+    public void setIdade(String idade) {
+        this.idade = idade;
+    }
 
     public int getRegistro() {
         return Registro;

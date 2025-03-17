@@ -200,6 +200,7 @@ public class ListarUsuarios extends javax.swing.JFrame {
          loginForm.cbFuncao.setSelectedItem(Tabela.getValueAt(row, 14).toString());
 
          loginForm.setVisible(true); 
+         this.dispose();
      }
     }//GEN-LAST:event_TabelaMouseClicked
 

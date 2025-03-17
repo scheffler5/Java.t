@@ -170,7 +170,9 @@ public class ListarPaciente extends javax.swing.JFrame {
          
 
          dados.setVisible(true); 
+         this.dispose();
      }
+     
     }//GEN-LAST:event_TabelaMouseClicked
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated

@@ -18,6 +18,105 @@ public class Prontuario {
     private int AcaoMedica;
     private int IDusuario;
     private int Registro;
+    private int Convenio;
+    private int Preferencia;
+    private int Exame;
+    private int ProcedimentoCirurgico;
+    private int Leito;
+    private int Liberacao;
+    private long TempoEspera;
+    private Pacientes dado;
+    private Classificacao cla;
+    private Preferencia pre;
+    private FluxoPref flu;
+
+    public Pacientes getDado() {
+        return dado;
+    }
+
+    public void setDado(Pacientes dado) {
+        this.dado = dado;
+    }
+
+    public Classificacao getCla() {
+        return cla;
+    }
+
+    public void setCla(Classificacao cla) {
+        this.cla = cla;
+    }
+
+    public Preferencia getPre() {
+        return pre;
+    }
+
+    public void setPre(Preferencia pre) {
+        this.pre = pre;
+    }
+
+    public FluxoPref getFlu() {
+        return flu;
+    }
+
+    public void setFlu(FluxoPref flu) {
+        this.flu = flu;
+    }
+
+    public long getTempoEspera() {
+        return TempoEspera;
+    }
+
+    public void setTempoEspera(long TempoEspera) {
+        this.TempoEspera = TempoEspera;
+    }
+
+    public int getPreferencia() {
+        return Preferencia;
+    }
+
+    public void setPreferencia(int Preferencia) {
+        this.Preferencia = Preferencia;
+    }
+
+    public int getExame() {
+        return Exame;
+    }
+
+    public void setExame(int Exame) {
+        this.Exame = Exame;
+    }
+
+    public int getProcedimentoCirurgico() {
+        return ProcedimentoCirurgico;
+    }
+
+    public void setProcedimentoCirurgico(int ProcedimentoCirurgico) {
+        this.ProcedimentoCirurgico = ProcedimentoCirurgico;
+    }
+
+    public int getLeito() {
+        return Leito;
+    }
+
+    public void setLeito(int Leito) {
+        this.Leito = Leito;
+    }
+
+    public int getLiberacao() {
+        return Liberacao;
+    }
+
+    public void setLiberacao(int Liberacao) {
+        this.Liberacao = Liberacao;
+    }
+
+    public int getConvenio() {
+        return Convenio;
+    }
+
+    public void setConvenio(int Convenio) {
+        this.Convenio = Convenio;
+    }
 
     public int getProntuario() {
         return Prontuario;

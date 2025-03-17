@@ -4,9 +4,17 @@
  */
 package Formularios;
 
+import DAO.CDCDAO;
+import DAO.ConvenioDAO;
 import DAO.ProntuarioDAO;
 import DAO.PacienteDAO;
+import DAO.PreferenciaDAO;
+import DAO.ProfisDAO;
+import Model.CDC;
+import Model.Convenio;
 import Model.Pacientes;
+import Model.Preferencia;
+import Model.Profi;
 import Model.Prontuario;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -44,35 +52,35 @@ public class frmCadastroPaciente extends javax.swing.JFrame {
             }
         };
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel2 = new javax.swing.JPanel();
+        Pane = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTextPane2 = new javax.swing.JTextPane();
         jButton1 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextPane3 = new javax.swing.JTextPane();
+        txtConv = new javax.swing.JTextPane();
         jLabel5 = new javax.swing.JLabel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jTextPane4 = new javax.swing.JTextPane();
+        txtCDC = new javax.swing.JScrollPane();
+        txtCdC = new javax.swing.JTextPane();
         jButton2 = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTextPane5 = new javax.swing.JTextPane();
+        txtcdc = new javax.swing.JTextPane();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        jTextPane6 = new javax.swing.JTextPane();
+        txtMedico = new javax.swing.JScrollPane();
+        txtMeDico = new javax.swing.JTextPane();
         jButton3 = new javax.swing.JButton();
         jScrollPane8 = new javax.swing.JScrollPane();
-        jTextPane7 = new javax.swing.JTextPane();
+        txtmedico = new javax.swing.JTextPane();
         jLabel9 = new javax.swing.JLabel();
-        jScrollPane9 = new javax.swing.JScrollPane();
-        jTextPane8 = new javax.swing.JTextPane();
+        txtPreferencia = new javax.swing.JScrollPane();
+        txtPref = new javax.swing.JTextPane();
         jButton4 = new javax.swing.JButton();
         jScrollPane10 = new javax.swing.JScrollPane();
-        jTextPane9 = new javax.swing.JTextPane();
+        txtprefe = new javax.swing.JTextPane();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        scrol = new javax.swing.JScrollPane();
+        txtConvenio = new javax.swing.JTextPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtCPF = new javax.swing.JTextPane();
         jLabel1 = new javax.swing.JLabel();
@@ -93,21 +101,34 @@ public class frmCadastroPaciente extends javax.swing.JFrame {
 
         jLabel4.setText("Convenio");
 
-        jScrollPane3.setViewportView(jTextPane2);
-
         jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jTextPane3.setEnabled(false);
-        jScrollPane4.setViewportView(jTextPane3);
+        txtConv.setEnabled(false);
+        jScrollPane4.setViewportView(txtConv);
 
         jLabel5.setText("COD");
 
-        jScrollPane5.setViewportView(jTextPane4);
+        txtCdC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCdCKeyPressed(evt);
+            }
+        });
+        txtCDC.setViewportView(txtCdC);
 
         jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
-        jTextPane5.setEnabled(false);
-        jScrollPane6.setViewportView(jTextPane5);
+        txtcdc.setEnabled(false);
+        jScrollPane6.setViewportView(txtcdc);
 
         jLabel6.setText("COD");
 
@@ -115,66 +136,95 @@ public class frmCadastroPaciente extends javax.swing.JFrame {
 
         jLabel8.setText("COD");
 
-        jScrollPane7.setViewportView(jTextPane6);
+        txtMeDico.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtMeDicoKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtMeDicoKeyReleased(evt);
+            }
+        });
+        txtMedico.setViewportView(txtMeDico);
 
         jButton3.setText("jButton3");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
-        jTextPane7.setEnabled(false);
-        jScrollPane8.setViewportView(jTextPane7);
+        txtmedico.setEnabled(false);
+        jScrollPane8.setViewportView(txtmedico);
 
         jLabel9.setText("Medico");
 
-        jScrollPane9.setViewportView(jTextPane8);
+        txtPref.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPrefKeyPressed(evt);
+            }
+        });
+        txtPreferencia.setViewportView(txtPref);
 
         jButton4.setText("jButton4");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
-        jTextPane9.setEnabled(false);
-        jScrollPane10.setViewportView(jTextPane9);
+        txtprefe.setEnabled(false);
+        jScrollPane10.setViewportView(txtprefe);
 
         jLabel10.setText("COD");
 
         jLabel11.setText("Preferencia");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        txtConvenio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtConvenioKeyPressed(evt);
+            }
+        });
+        scrol.setViewportView(txtConvenio);
+
+        javax.swing.GroupLayout PaneLayout = new javax.swing.GroupLayout(Pane);
+        Pane.setLayout(PaneLayout);
+        PaneLayout.setHorizontalGroup(
+            PaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PaneLayout.createSequentialGroup()
                 .addGap(48, 48, 48)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(PaneLayout.createSequentialGroup()
+                        .addComponent(txtMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PaneLayout.createSequentialGroup()
+                        .addComponent(scrol, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PaneLayout.createSequentialGroup()
+                        .addGroup(PaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel5)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addComponent(jLabel8))
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                            .addComponent(txtPreferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PaneLayout.createSequentialGroup()
+                        .addGroup(PaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
-                        .addGap(29, 29, 29)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(27, 27, 27)
+                        .addGroup(PaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PaneLayout.createSequentialGroup()
+                                .addComponent(txtCDC, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(PaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
                             .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 629, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -182,53 +232,58 @@ public class frmCadastroPaciente extends javax.swing.JFrame {
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        PaneLayout.setVerticalGroup(
+            PaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PaneLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton1)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(PaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PaneLayout.createSequentialGroup()
+                        .addComponent(txtCDC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel6))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7)))
-                .addGap(26, 26, 26)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6)
+                        .addGap(28, 28, 28))
+                    .addGroup(PaneLayout.createSequentialGroup()
+                        .addGroup(PaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PaneLayout.createSequentialGroup()
+                                .addGroup(PaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(PaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jButton1)
+                                        .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(scrol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(PaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)))
+                            .addGroup(PaneLayout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addGroup(PaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel7)))
+                        .addGap(26, 26, 26)))
+                .addGroup(PaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton3)
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addComponent(jLabel9))
                 .addGap(28, 28, 28)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4)
-                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(PaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jButton4)
+                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPreferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(PaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(jLabel11))
                 .addContainerGap(81, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Prontuario", jPanel2);
+        jTabbedPane1.addTab("Prontuario", Pane);
 
         txtCPF.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -269,6 +324,11 @@ public class frmCadastroPaciente extends javax.swing.JFrame {
         jLabel3.setText("Data Nascimento");
 
         jButton5.setText("Gravar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("Cancelar");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -396,6 +456,122 @@ public class frmCadastroPaciente extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnTabelaPacienteActionPerformed
 
+    private void txtConvenioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtConvenioKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+            String user = txtConvenio.getText();
+        Convenio obj = new Convenio();
+        ConvenioDAO dao = new ConvenioDAO();
+        obj = dao.BuscarConvenio(user);
+        if(obj.getID()!= 0){
+            txtConvenio.setText(String.valueOf(obj.getID()));
+            txtConv.setText(obj.getNome());
+            
+            
+        
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Convenio nao encontrado");
+        }
+            
+        }
+    }//GEN-LAST:event_txtConvenioKeyPressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ListarConvenios listConv = new ListarConvenios(this);
+        listConv.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        ListarCDC listCDC = new ListarCDC(this);
+        listCDC.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        ListarProfissionais listProf = new ListarProfissionais(this);
+        listProf.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void txtMeDicoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMeDicoKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMeDicoKeyReleased
+
+    private void txtMeDicoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMeDicoKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+            String user = txtMeDico.getText();
+        Profi obj = new Profi();
+        ProfisDAO dao = new ProfisDAO();
+        obj = dao.BuscarProf(user);
+        if(obj.getIDProf()!= 0){
+            txtMeDico.setText(String.valueOf(obj.getIDProf()));
+            txtmedico.setText(obj.getNome());
+ 
+        }else{
+            JOptionPane.showMessageDialog(null, "Profissional nao encontrado");
+        }
+            
+        }
+    }//GEN-LAST:event_txtMeDicoKeyPressed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+       ListarPreferencia listPref = new ListarPreferencia(this);
+        listPref.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void txtPrefKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrefKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+            String user = txtPref.getText();
+        Preferencia obj = new Preferencia();
+        PreferenciaDAO dao = new PreferenciaDAO();
+        obj = dao.BuscarPreferencia(user);
+        if(obj.getID()!= 0){
+            txtPref.setText(String.valueOf(obj.getID()));
+            txtprefe.setText(obj.getNome());
+ 
+        }else{
+            JOptionPane.showMessageDialog(null, "Preferencia nao encontrado");
+        }
+            
+        }
+    }//GEN-LAST:event_txtPrefKeyPressed
+
+    private void txtCdCKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCdCKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+            String user = txtCdC.getText();
+            CDC obj = new CDC();
+            CDCDAO dao = new CDCDAO();
+            obj = dao.BuscarConvenio(user);
+            if(obj.getID()!= 0){
+                txtCdC.setText(String.valueOf(obj.getID()));
+                txtcdc.setText(obj.getCDC());
+
+            }else{
+                JOptionPane.showMessageDialog(null, "CDC nao encontrado");
+            }
+
+        }
+    }//GEN-LAST:event_txtCdCKeyPressed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+       
+        Prontuario obj = new Prontuario();
+        ProntuarioDAO dao = new ProntuarioDAO();
+
+            obj.setRegistro(Integer.valueOf(txtCPF.getText()));
+            obj.setIDprof(Integer.valueOf(txtMeDico.getText()));
+            obj.setCdc(Integer.valueOf(txtCdC.getText()));
+            obj.setConvenio(Integer.valueOf(txtConvenio.getText()));
+            obj.setPreferencia(Integer.valueOf(txtPref.getText()));
+            
+            dao.Salvar(obj);
+            txtCPF.setText("");
+            txtMeDico.setText("");
+            txtCdC.setText("");
+            txtConv.setText("");
+            txtprefe.setText("");
+           
+            
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -433,6 +609,7 @@ public class frmCadastroPaciente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Pane;
     private javax.swing.JButton btnTabelaPaciente;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -452,28 +629,27 @@ public class frmCadastroPaciente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextPane jTextPane2;
-    private javax.swing.JTextPane jTextPane3;
-    private javax.swing.JTextPane jTextPane4;
-    private javax.swing.JTextPane jTextPane5;
-    private javax.swing.JTextPane jTextPane6;
-    private javax.swing.JTextPane jTextPane7;
-    private javax.swing.JTextPane jTextPane8;
-    private javax.swing.JTextPane jTextPane9;
+    protected javax.swing.JScrollPane scrol;
+    private javax.swing.JScrollPane txtCDC;
     protected javax.swing.JTextPane txtCPF;
+    protected javax.swing.JTextPane txtCdC;
+    protected javax.swing.JTextPane txtConv;
+    protected javax.swing.JTextPane txtConvenio;
     protected javax.swing.JFormattedTextField txtData;
+    protected javax.swing.JTextPane txtMeDico;
+    protected javax.swing.JScrollPane txtMedico;
     protected javax.swing.JTextPane txtNome;
+    protected javax.swing.JTextPane txtPref;
+    protected javax.swing.JScrollPane txtPreferencia;
+    protected javax.swing.JTextPane txtcdc;
+    protected javax.swing.JTextPane txtmedico;
+    protected javax.swing.JTextPane txtprefe;
     // End of variables declaration//GEN-END:variables
 }
