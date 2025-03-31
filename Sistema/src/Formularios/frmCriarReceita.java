@@ -54,8 +54,15 @@ public class frmCriarReceita extends javax.swing.JFrame {
         setTitle("Receita Medica");
         setResizable(false);
 
+        jButton2.setBackground(new java.awt.Color(255, 0, 0));
         jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
+        jButton3.setBackground(new java.awt.Color(51, 255, 0));
         jButton3.setText("Gravar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,6 +193,10 @@ public class frmCriarReceita extends javax.swing.JFrame {
             obj.setTitulo(txtTitulo.getText());
             dao.SalvarPadrao(obj);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

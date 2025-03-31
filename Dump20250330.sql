@@ -25,10 +25,10 @@ DROP TABLE IF EXISTS `antibiotico`;
 CREATE TABLE `antibiotico` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Nome` varchar(45) DEFAULT NULL,
-  `Preco` int(30) DEFAULT NULL,
-  `Quantidade` int(30) DEFAULT NULL,
+  `Preco` float DEFAULT NULL,
+  `Quantidade` float DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `antibiotico` (
 
 LOCK TABLES `antibiotico` WRITE;
 /*!40000 ALTER TABLE `antibiotico` DISABLE KEYS */;
-INSERT INTO `antibiotico` VALUES (1,'Antibiotico A',20,100),(2,'Antibiotico B',50,200),(3,'Antibiotico C',75,150);
+INSERT INTO `antibiotico` VALUES (1,'Antibiotico A',20,100),(2,'Antibiotico B',50,200),(3,'Antibiotico C',75,150),(4,'bromoprida 20mg',15,100);
 /*!40000 ALTER TABLE `antibiotico` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -77,7 +77,7 @@ CREATE TABLE `cdc` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `CDC` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -86,7 +86,7 @@ CREATE TABLE `cdc` (
 
 LOCK TABLES `cdc` WRITE;
 /*!40000 ALTER TABLE `cdc` DISABLE KEYS */;
-INSERT INTO `cdc` VALUES (1,'Leito 101'),(2,'Leito 102'),(3,'Leito 103'),(4,'Sala de Medicamentos - Unidade A'),(5,'Sala de Medicamentos - Unidade B'),(6,'Estoque de Medicamentos - Central'),(7,'Sala de Urgência'),(8,'Sala de Reanimação'),(9,'Laboratório - Exames Gerais'),(10,'Centro Cirúrgico - Bloco A'),(11,'Centro Cirúrgico - Bloco B'),(12,'Maternidade - Leito 1'),(13,'Maternidade - Leito 2'),(14,'Unidade de Terapia Intensiva (UTI)'),(15,'Pronto-Socorro - Área de Atendimento');
+INSERT INTO `cdc` VALUES (1,'Leito 101'),(2,'Leito 102'),(3,'Leito 103'),(4,'Sala de Medicamentos - Unidade A'),(5,'Sala de Medicamentos - Unidade B'),(6,'Estoque de Medicamentos - Central'),(7,'Sala de Urgência'),(8,'Sala de Reanimação'),(9,'Laboratório - Exames Gerais'),(10,'Centro Cirúrgico - Bloco A'),(11,'Centro Cirúrgico - Bloco B'),(12,'Maternidade - Leito 1'),(13,'Maternidade - Leito 2'),(14,'Unidade de Terapia Intensiva (UTI)'),(15,'Pronto-Socorro - Área de Atendimento'),(16,'Farmacia');
 /*!40000 ALTER TABLE `cdc` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,36 +141,6 @@ INSERT INTO `classificacaorisco` VALUES (1,'Emergente','Vermelho'),(2,'Urgente',
 UNLOCK TABLES;
 
 --
--- Table structure for table `colaboradores`
---
-
-DROP TABLE IF EXISTS `colaboradores`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `colaboradores` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Nome` varchar(100) DEFAULT NULL,
-  `CLThanos` varchar(45) DEFAULT NULL,
-  `CPF` varchar(45) DEFAULT NULL,
-  `DataNascimento` varchar(45) DEFAULT NULL,
-  `Salario` varchar(45) DEFAULT NULL,
-  `CargaHoraria` varchar(45) DEFAULT NULL,
-  `Cargo` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `colaboradores`
---
-
-LOCK TABLES `colaboradores` WRITE;
-/*!40000 ALTER TABLE `colaboradores` DISABLE KEYS */;
-INSERT INTO `colaboradores` VALUES (1,'João Silva','123456789','123.456.789-00','01/01/1980','3000','40','Médico'),(2,'Maria Souza','987654321','987.654.321-00','15/05/1990','2500','40','Enfermeira'),(3,'Carlos Pereira','192837465','192.837.465-00','25/08/1985','2200','40','Técnico de Enfermagem');
-/*!40000 ALTER TABLE `colaboradores` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `convenio`
 --
 
@@ -220,7 +190,7 @@ CREATE TABLE `dadospacientes` (
   `CPF` varchar(45) DEFAULT NULL,
   `EstadoCivil` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`Registro`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -229,7 +199,7 @@ CREATE TABLE `dadospacientes` (
 
 LOCK TABLES `dadospacientes` WRITE;
 /*!40000 ALTER TABLE `dadospacientes` DISABLE KEYS */;
-INSERT INTO `dadospacientes` VALUES (1,'João Silva','15/04/1990','123456789','123456789012','Brasil','SP','São Paulo','Rua das Flores, 123','01010-010','11987654321','joao.silva@email.com','Maria Silva','José Silva','123.456.789-10','Solteiro'),(2,'Maria Oliveira','22/08/1985','987654321','987654321098','Brasil','MG','Belo Horizonte','Avenida dos Trabalhadores, 456','30330-220','31987654322','maria.oliveira@email.com','Ana Oliveira','Carlos Oliveira','987.654.321-00','Casada'),(3,'Carlos Souza','12/11/1979','112233445','112233445566','Brasil','RJ','Rio de Janeiro','Rua da Paz, 789','20530-150','21987654323','carlos.souza@email.com','Joana Souza','Paulo Souza','112.233.445-66','Divorciado'),(4,'Luciana Pereira','05/02/1992','223344556','223344556677','Brasil','SP','Campinas','Rua das Orquídeas, 321','13080-400','19987654324','luciana.pereira@email.com','Rita Pereira','Jorge Pereira','223.344.556-77','Solteira'),(5,'Gabriel lima scheffler','10/11/2005','545.070.983.4','2222.2222.2222.2222','Brasil','PR','Santa Helena','Rua Aroeira, 643','33333-333','(13) 98226-9509','gabrischeffler@gmail.com','Cintia Cavalcanti Lima Scheffler','Mauricio Scheffler','466.318.618-10','Casado'),(6,'Aldo Garcia','25/07/1983','111.111.111.1','1111.1111.1111.1111','Arábia Saudita','AL','Aracaju','Av. Jose Marcio ','80380-000','(49) 99883-8599','AldoAldao@gmail.com','Nila','Gento','555.555.555-55','Casado'),(11,'Marcos de Oliveira Lauro','08/07/2005','111.111.111.1','1111.1111.1111.1111','Noruega','SP','santos','rua euclides da cunha','24242-424','(13) 99999-9999','Marquinhos@gmail.com','','','777.777.777-77','União Estável');
+INSERT INTO `dadospacientes` VALUES (1,'João Silva','15/04/1990','123456789','123456789012','Brasil','SP','São Paulo','Rua das Flores, 123','01010-010','11987654321','joao.silva@email.com','Maria Silva','José Silva','123.456.789-10','Solteiro'),(2,'Maria Oliveira','22/08/1985','987654321','987654321098','Brasil','MG','Belo Horizonte','Avenida dos Trabalhadores, 456','30330-220','31987654322','maria.oliveira@email.com','Ana Oliveira','Carlos Oliveira','987.654.321-00','Casada'),(3,'Carlos Souza','12/11/1979','112233445','112233445566','Brasil','RJ','Rio de Janeiro','Rua da Paz, 789','20530-150','21987654323','carlos.souza@email.com','Joana Souza','Paulo Souza','112.233.445-66','Divorciado'),(4,'Luciana Pereira','05/02/1992','223344556','223344556677','Brasil','SP','Campinas','Rua das Orquídeas, 321','13080-400','19987654324','luciana.pereira@email.com','Rita Pereira','Jorge Pereira','223.344.556-77','Solteira'),(5,'Gabriel lima scheffler','10/11/2005','545.070.983.4','2222.2222.2222.2222','Brasil','PR','Santa Helena','Rua Aroeira, 643','33333-333','(13) 98226-9509','gabrischeffler@gmail.com','Cintia Cavalcanti Lima Scheffler','Mauricio Scheffler','466.318.618-10','Casado'),(6,'Aldo Garcia','25/07/1983','111.111.111.1','1111.1111.1111.1111','Arábia Saudita','AL','Aracaju','Av. Jose Marcio ','80380-000','(49) 99883-8599','AldoAldao@gmail.com','Nila','Gento','555.555.555-55','Casado'),(11,'Marcos de Oliveira Lauro','08/07/2005','111.111.111.1','1111.1111.1111.1111','Noruega','SP','santos','rua euclides da cunha','24242-424','(13) 99999-9999','Marquinhos@gmail.com','','','777.777.777-77','União Estável'),(12,'Rodrigo Tanagnollo','28/06/2003','555.555.555.5','2222.2222.2222.2222','Bahamas','AM','Tangara da serra','Rua aldo Garcia 2385','44444-444','(24) 24242-4242','Rodrigogay@gmail.com','Arolda','Geraldo','444.444.444-44','Casado'),(13,'Miguel Angelo','05/04/2003','123.201.600.4','1111.1111.1111.1111','Albânia','AC','','Rua Aroeira','00000-000','(33) 33333-3333','miguel@gmail.com','Potira Maria','Joao ','109.610.089-46','Casado'),(14,'Gustavo Romagnoli Mazur','11/09/2001','444.444.444.4','2222.2222.2222.2222','Botswana','AM','Santa helena','dsvsds','22222-222','(24) 24242-4242','gustavin@gmail.com','Gleison','Gisele','999.999.999-99','União Estável');
 /*!40000 ALTER TABLE `dadospacientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -257,6 +227,40 @@ LOCK TABLES `estoque` WRITE;
 /*!40000 ALTER TABLE `estoque` DISABLE KEYS */;
 INSERT INTO `estoque` VALUES (1,'Produto A',100,50),(2,'Produto B',150,30),(3,'Produto C',200,20);
 /*!40000 ALTER TABLE `estoque` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `estoquemedi`
+--
+
+DROP TABLE IF EXISTS `estoquemedi`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `estoquemedi` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Medicamentos` int(11) DEFAULT NULL,
+  `CDC` int(11) DEFAULT NULL,
+  `Data` datetime DEFAULT current_timestamp(),
+  `Fornecedor` int(11) DEFAULT NULL,
+  `Quantidade` float DEFAULT 1,
+  PRIMARY KEY (`ID`),
+  KEY `fk_medicamentoss` (`Medicamentos`),
+  KEY `fk_cdcs` (`CDC`),
+  KEY `fk_fornecedores` (`Fornecedor`),
+  CONSTRAINT `fk_cdcs` FOREIGN KEY (`CDC`) REFERENCES `cdc` (`ID`),
+  CONSTRAINT `fk_fornecedores` FOREIGN KEY (`Fornecedor`) REFERENCES `fornecedores` (`ID`),
+  CONSTRAINT `fk_medicamentoss` FOREIGN KEY (`Medicamentos`) REFERENCES `medicamentos` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `estoquemedi`
+--
+
+LOCK TABLES `estoquemedi` WRITE;
+/*!40000 ALTER TABLE `estoquemedi` DISABLE KEYS */;
+INSERT INTO `estoquemedi` VALUES (2,4,16,'2025-03-23 12:19:24',3,50),(4,1,4,'2025-03-23 18:32:21',NULL,1),(5,3,4,'2025-03-23 18:32:23',NULL,1),(7,1,4,'2025-03-23 18:37:14',NULL,1),(8,3,4,'2025-03-23 18:37:14',NULL,1),(9,1,4,'2025-03-23 18:49:58',NULL,1),(10,3,4,'2025-03-23 18:50:00',NULL,1),(11,1,4,'2025-03-23 18:53:46',NULL,1),(12,3,4,'2025-03-23 18:53:47',NULL,1),(13,4,16,'2025-03-24 14:01:17',3,4),(14,4,15,'2025-03-24 14:03:26',NULL,1),(15,5,15,'2025-03-24 14:03:28',NULL,1),(16,1,7,'2025-03-24 14:04:16',NULL,1),(17,4,16,'2025-03-24 14:55:57',1,100),(18,4,15,'2025-03-24 14:56:22',NULL,1),(19,3,15,'2025-03-24 14:56:25',NULL,1),(20,4,15,'2025-03-24 14:56:39',NULL,1),(21,5,15,'2025-03-24 18:25:32',NULL,1),(22,4,15,'2025-03-24 18:25:33',NULL,1),(23,1,15,'2025-03-24 18:25:34',NULL,1),(24,2,15,'2025-03-24 18:25:35',NULL,1),(25,3,15,'2025-03-24 18:30:55',NULL,1),(26,4,16,'2025-03-24 23:13:52',2,1),(27,4,15,'2025-03-24 23:15:06',NULL,1),(28,5,15,'2025-03-24 23:15:07',NULL,1),(29,5,16,'2025-03-25 17:24:35',3,13),(30,4,12,'2025-03-25 17:26:00',NULL,1),(31,1,12,'2025-03-25 17:26:07',NULL,1),(32,5,12,'2025-03-25 17:26:08',NULL,1),(33,5,16,'2025-03-28 17:56:47',2,1),(34,4,15,'2025-03-28 17:57:46',NULL,1),(35,4,15,'2025-03-29 14:15:31',NULL,1),(36,2,16,'2025-03-29 14:15:55',3,10),(37,5,4,'2025-03-30 16:08:26',NULL,1),(38,1,4,'2025-03-30 16:08:28',NULL,1);
+/*!40000 ALTER TABLE `estoquemedi` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -298,7 +302,7 @@ CREATE TABLE `exame` (
   `Nome` varchar(100) DEFAULT NULL,
   `preco` float DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -307,8 +311,41 @@ CREATE TABLE `exame` (
 
 LOCK TABLES `exame` WRITE;
 /*!40000 ALTER TABLE `exame` DISABLE KEYS */;
-INSERT INTO `exame` VALUES (1,'Hemograma',50),(2,'Hemacias',70),(3,'Raio X',90);
+INSERT INTO `exame` VALUES (1,'Hemograma',50),(2,'Hemacias',70),(3,'Raio X',90),(4,'Exame Teste',150);
 /*!40000 ALTER TABLE `exame` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `financeiro`
+--
+
+DROP TABLE IF EXISTS `financeiro`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `financeiro` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `EstoqueMedi` int(11) DEFAULT NULL,
+  `Profissionais` int(11) DEFAULT NULL,
+  `Estoque` int(11) DEFAULT NULL,
+  `Valor` float DEFAULT NULL,
+  `Data` datetime DEFAULT current_timestamp(),
+  `Notas` varchar(150) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `fk_financeiro_estoquemedi` (`EstoqueMedi`),
+  KEY `fk_financeiro_profissionais` (`Profissionais`),
+  CONSTRAINT `fk_financeiro_estoquemedi` FOREIGN KEY (`EstoqueMedi`) REFERENCES `estoquemedi` (`ID`),
+  CONSTRAINT `fk_financeiro_profissionais` FOREIGN KEY (`Profissionais`) REFERENCES `profissionais` (`IDProf`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `financeiro`
+--
+
+LOCK TABLES `financeiro` WRITE;
+/*!40000 ALTER TABLE `financeiro` DISABLE KEYS */;
+INSERT INTO `financeiro` VALUES (1,NULL,4,NULL,148000,'2025-03-24 18:29:55',NULL),(2,21,NULL,NULL,20,'2025-03-24 18:29:55',NULL),(3,22,NULL,NULL,10,'2025-03-24 18:29:55',NULL),(4,23,NULL,NULL,50,'2025-03-24 18:29:55',NULL),(5,24,NULL,NULL,70,'2025-03-24 18:29:55',NULL),(6,25,NULL,NULL,90,'2025-03-24 18:30:55',NULL),(7,26,NULL,NULL,10,'2025-03-24 23:13:52',NULL),(8,27,NULL,NULL,10,'2025-03-24 23:15:06',NULL),(9,28,NULL,NULL,20,'2025-03-24 23:15:07',NULL),(10,29,NULL,NULL,20,'2025-03-25 17:24:35',NULL),(11,30,NULL,NULL,10,'2025-03-25 17:26:00',NULL),(12,31,NULL,NULL,50,'2025-03-25 17:26:07',NULL),(13,32,NULL,NULL,20,'2025-03-25 17:26:08',NULL),(14,NULL,NULL,NULL,1000,'2025-03-28 16:46:41','Nota Teste'),(15,NULL,NULL,NULL,620,'2025-03-28 17:02:21','nota teste'),(19,33,NULL,NULL,20,'2025-03-28 17:56:47',NULL),(20,34,NULL,NULL,10,'2025-03-28 17:57:46',NULL),(21,35,NULL,NULL,10,'2025-03-29 14:15:31',NULL),(22,36,NULL,NULL,70,'2025-03-29 14:15:55',NULL),(23,NULL,5,NULL,118000,'2025-03-29 14:17:38',NULL),(24,37,NULL,NULL,20,'2025-03-30 16:08:26',NULL),(25,38,NULL,NULL,50,'2025-03-30 16:08:28',NULL);
+/*!40000 ALTER TABLE `financeiro` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -321,12 +358,12 @@ DROP TABLE IF EXISTS `fluxopref`;
 CREATE TABLE `fluxopref` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Prontuario` int(11) DEFAULT NULL,
-  `Data` date DEFAULT curdate(),
-  `Hora` time DEFAULT curtime(),
+  `Data` date DEFAULT NULL,
+  `Hora` time DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `fk_fluxopref_prontuario` (`Prontuario`),
   CONSTRAINT `fk_fluxopref_prontuario` FOREIGN KEY (`Prontuario`) REFERENCES `prontuario` (`Prontuario`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -335,7 +372,7 @@ CREATE TABLE `fluxopref` (
 
 LOCK TABLES `fluxopref` WRITE;
 /*!40000 ALTER TABLE `fluxopref` DISABLE KEYS */;
-INSERT INTO `fluxopref` VALUES (1,1,'2025-03-03','21:23:19'),(2,11,'2025-02-03','21:23:19'),(3,13,'2025-03-03','22:04:09'),(4,14,'2025-02-03','22:29:40'),(5,15,'2025-02-03','22:33:51'),(6,16,'2025-03-03','22:37:20'),(7,17,'2025-03-04','14:38:58'),(8,18,'2025-03-04','16:33:51'),(9,19,'2025-03-05','15:33:20'),(10,20,'2025-03-07','17:45:28'),(11,21,'2025-03-10','12:46:05'),(12,22,'2025-03-13','21:53:31');
+INSERT INTO `fluxopref` VALUES (1,1,'2025-03-03','21:23:19'),(2,11,'2025-02-03','21:23:19'),(3,13,'2025-03-03','22:04:09'),(4,14,'2025-02-03','22:29:40'),(5,15,'2025-02-03','22:33:51'),(6,16,'2025-03-03','22:37:20'),(7,17,'2025-03-04','14:38:58'),(8,18,'2025-03-04','16:33:51'),(9,19,'2025-03-05','15:33:20'),(10,20,'2025-03-07','17:45:28'),(11,21,'2025-03-10','12:46:05'),(12,22,'2025-03-13','21:53:31'),(13,23,'2025-03-13','13:48:31'),(14,24,'2025-03-24','14:11:28'),(15,25,'2025-03-24','23:08:29'),(16,26,'2025-03-25','17:15:01'),(17,27,'2025-03-28','17:47:09'),(18,28,'2025-03-29','14:12:37'),(19,29,'2025-03-30','14:26:14');
 /*!40000 ALTER TABLE `fluxopref` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -399,10 +436,10 @@ DROP TABLE IF EXISTS `medicamentos`;
 CREATE TABLE `medicamentos` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Nome` varchar(100) DEFAULT NULL,
-  `Preco` int(30) DEFAULT NULL,
-  `Quantidade` int(30) DEFAULT NULL,
+  `Preco` float DEFAULT NULL,
+  `Quantidade` float DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -411,7 +448,7 @@ CREATE TABLE `medicamentos` (
 
 LOCK TABLES `medicamentos` WRITE;
 /*!40000 ALTER TABLE `medicamentos` DISABLE KEYS */;
-INSERT INTO `medicamentos` VALUES (1,'Medicamento A',50,100),(2,'Medicamento B',70,200),(3,'Medicamento C',90,150);
+INSERT INTO `medicamentos` VALUES (1,'Medicamento A',50,94),(2,'Medicamento B',70,209),(3,'Medicamento C',90,146),(4,'Dorflex 50mg',10,247),(5,'Dipirona 50mg',20,19),(6,'Ibuprofeno 50mg',30,100);
 /*!40000 ALTER TABLE `medicamentos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -489,7 +526,7 @@ CREATE TABLE `prescmedica` (
   CONSTRAINT `fk_antibioticos` FOREIGN KEY (`Antibioticos`) REFERENCES `antibiotico` (`ID`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk_medicamentos` FOREIGN KEY (`Medicamentos`) REFERENCES `medicamentos` (`ID`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk_prescricao` FOREIGN KEY (`Prescricao`) REFERENCES `tbprescricao` (`ID_Prescricao`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -498,7 +535,7 @@ CREATE TABLE `prescmedica` (
 
 LOCK TABLES `prescmedica` WRITE;
 /*!40000 ALTER TABLE `prescmedica` DISABLE KEYS */;
-INSERT INTO `prescmedica` VALUES (12,17,1,NULL,6),(13,17,NULL,3,5),(14,18,1,NULL,55),(15,18,NULL,3,6666);
+INSERT INTO `prescmedica` VALUES (12,17,1,NULL,6),(13,17,NULL,3,5),(14,18,1,NULL,55),(15,18,NULL,3,6666),(16,17,3,NULL,77),(17,17,NULL,2,22),(18,19,4,NULL,100),(19,19,5,NULL,10),(20,19,NULL,4,1),(21,20,4,NULL,44),(22,20,3,NULL,44),(23,21,4,NULL,5),(24,22,5,NULL,55),(25,22,4,NULL,30),(26,22,1,NULL,22),(27,22,2,NULL,5),(28,23,3,NULL,11),(29,24,4,NULL,10000),(30,24,5,NULL,10),(31,24,NULL,4,20),(32,25,4,NULL,400),(33,25,1,NULL,400),(34,25,5,NULL,400),(35,26,4,NULL,50),(36,26,NULL,4,22),(37,27,4,NULL,555),(38,27,NULL,4,22),(39,28,5,NULL,55),(40,28,1,NULL,66);
 /*!40000 ALTER TABLE `prescmedica` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -539,12 +576,14 @@ CREATE TABLE `profissionais` (
   `Nome` varchar(45) DEFAULT NULL,
   `CartaoSUS` varchar(45) DEFAULT NULL,
   `IDCredencial` varchar(45) DEFAULT NULL,
-  `IDespecialidade` varchar(45) DEFAULT NULL,
+  `IDespecialidade` varchar(100) DEFAULT NULL,
   `DataNascimento` varchar(45) DEFAULT NULL,
   `CPF` varchar(45) DEFAULT NULL,
-  `Função` varchar(45) DEFAULT NULL,
+  `Função` varchar(100) DEFAULT NULL,
+  `Salario` float DEFAULT NULL,
+  `Ativo` tinyint(1) DEFAULT 1,
   PRIMARY KEY (`IDProf`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -553,7 +592,7 @@ CREATE TABLE `profissionais` (
 
 LOCK TABLES `profissionais` WRITE;
 /*!40000 ALTER TABLE `profissionais` DISABLE KEYS */;
-INSERT INTO `profissionais` VALUES (1,'Jacinto Leite Aquino Rego','2147483647','CRM','Clinico Geral ','1980-01-01','123.456.789-00','Médico'),(2,'Desse pique ne','2147483647','COREN','Enfermeiro','1990-02-02','987.654.321-00','Enfermeiro'),(3,'Deide Costa','2147483647','CREFITO','Fisioterapeuta','1985-03-03','111.223.344-00','Técnico de Enfermagem');
+INSERT INTO `profissionais` VALUES (1,'Jose Clemente','2147.4836.47  .    ','CRM','Clínica Médica  ','  /  /    ','123.456.789-00','Médico',9000,1),(2,'Lucas','2147.4836.47  .    ','COREN','Enfermagem  ','  /  /    ','987.654.321-00','Enfermeiro',4000,1),(3,'Cleide','2147.4836.47  .    ','CREFITO','Fisioterapia  ','  /  /    ','111.223.344-00','Fisioterapeuta',5000,1),(4,'Ana Clara Alves Rios','3333.3333.3333.3333','CRM','Clínica Médica  ','18/03/2004','555.555.555-55','Médico',30000,1),(5,'Gustavo Romagnoli Mazur','9999.9999.9999.9999','CRM','Urologia  ','11/09/2001','444.444.444-44','Médico',100000,1);
 /*!40000 ALTER TABLE `profissionais` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -598,7 +637,7 @@ CREATE TABLE `prontuario` (
   CONSTRAINT `fk_prontuario_preferencia` FOREIGN KEY (`Preferencia_ID`) REFERENCES `preferencia` (`ID`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk_prontuario_procedimentos` FOREIGN KEY (`ProcedimentoCirurgico_ID`) REFERENCES `procedimentoscirurgicos` (`ID`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk_usuario` FOREIGN KEY (`ID_usuario`) REFERENCES `usuarios` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -607,7 +646,7 @@ CREATE TABLE `prontuario` (
 
 LOCK TABLES `prontuario` WRITE;
 /*!40000 ALTER TABLE `prontuario` DISABLE KEYS */;
-INSERT INTO `prontuario` VALUES (1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0),(10,1,NULL,NULL,8,NULL,6,3,2,NULL,NULL,0),(11,1,NULL,4,5,NULL,5,2,4,NULL,NULL,1),(13,1,NULL,3,7,NULL,3,4,2,NULL,NULL,1),(14,1,NULL,NULL,5,NULL,1,2,3,NULL,NULL,1),(15,1,NULL,NULL,4,NULL,2,2,2,NULL,NULL,1),(16,1,NULL,NULL,3,NULL,3,1,2,NULL,NULL,1),(17,1,NULL,1,4,NULL,5,2,3,NULL,NULL,0),(18,1,NULL,2,2,NULL,4,1,1,NULL,NULL,1),(19,1,NULL,1,15,NULL,11,2,1,NULL,NULL,1),(20,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0),(21,1,NULL,2,8,NULL,6,2,2,NULL,NULL,1),(22,1,NULL,1,7,NULL,6,1,1,NULL,NULL,0);
+INSERT INTO `prontuario` VALUES (1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0),(10,1,NULL,NULL,8,NULL,6,3,2,NULL,NULL,0),(11,1,NULL,4,5,NULL,5,2,4,NULL,NULL,1),(13,1,NULL,3,7,NULL,3,4,2,NULL,NULL,1),(14,1,NULL,NULL,5,NULL,1,2,3,NULL,NULL,1),(15,1,NULL,NULL,4,NULL,2,2,2,NULL,NULL,1),(16,1,NULL,NULL,3,NULL,3,1,2,NULL,NULL,1),(17,1,NULL,1,4,NULL,5,2,3,NULL,NULL,1),(18,1,NULL,2,2,NULL,4,1,1,NULL,NULL,1),(19,1,NULL,1,15,NULL,11,2,1,NULL,NULL,1),(20,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0),(21,1,NULL,2,8,NULL,6,2,2,NULL,NULL,1),(22,1,NULL,1,7,NULL,6,1,1,NULL,NULL,1),(23,1,NULL,3,15,NULL,12,4,4,NULL,NULL,1),(24,1,NULL,2,15,NULL,5,1,4,NULL,NULL,1),(25,1,NULL,1,15,NULL,12,1,2,NULL,NULL,1),(26,1,NULL,1,12,NULL,12,1,4,NULL,NULL,1),(27,4,NULL,2,15,NULL,13,4,2,NULL,NULL,0),(28,1,NULL,1,4,NULL,14,1,2,NULL,NULL,1),(29,5,NULL,4,4,NULL,5,1,4,NULL,NULL,1);
 /*!40000 ALTER TABLE `prontuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -627,7 +666,7 @@ CREATE TABLE `solicitacaoexame` (
   KEY `fk_solicitacao_exame` (`ID_exame`),
   CONSTRAINT `fk_solicitacao_exame` FOREIGN KEY (`ID_exame`) REFERENCES `exame` (`ID`) ON DELETE CASCADE,
   CONSTRAINT `fk_solicitacao_prontuario` FOREIGN KEY (`Pront`) REFERENCES `prontuario` (`Prontuario`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -636,7 +675,7 @@ CREATE TABLE `solicitacaoexame` (
 
 LOCK TABLES `solicitacaoexame` WRITE;
 /*!40000 ALTER TABLE `solicitacaoexame` DISABLE KEYS */;
-INSERT INTO `solicitacaoexame` VALUES (1,17,1),(2,17,2),(3,17,3),(4,17,3),(7,17,1),(8,17,2),(9,17,1),(10,22,1),(11,22,2),(12,22,3);
+INSERT INTO `solicitacaoexame` VALUES (1,17,1),(2,17,2),(3,17,3),(4,17,3),(7,17,1),(8,17,2),(9,17,1),(10,22,1),(11,22,2),(12,22,3),(13,23,4),(14,23,2),(15,25,4),(16,26,4),(17,26,3),(18,26,2),(19,26,2),(20,27,3),(21,27,1),(22,28,1),(23,28,4),(24,29,3),(25,29,1);
 /*!40000 ALTER TABLE `solicitacaoexame` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -651,12 +690,13 @@ CREATE TABLE `tbprescricao` (
   `ID_Prescricao` int(11) NOT NULL AUTO_INCREMENT,
   `CDC_ID` int(11) DEFAULT NULL,
   `Prontuario_ID` int(11) DEFAULT NULL,
+  `Baixada` tinyint(1) DEFAULT 0,
   PRIMARY KEY (`ID_Prescricao`),
   KEY `fk_prescricao_cdc` (`CDC_ID`),
   KEY `fk_prontuarioal` (`Prontuario_ID`),
   CONSTRAINT `fk_prescricao_cdc` FOREIGN KEY (`CDC_ID`) REFERENCES `cdc` (`ID`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk_prontuarioal` FOREIGN KEY (`Prontuario_ID`) REFERENCES `prontuario` (`Prontuario`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -665,7 +705,7 @@ CREATE TABLE `tbprescricao` (
 
 LOCK TABLES `tbprescricao` WRITE;
 /*!40000 ALTER TABLE `tbprescricao` DISABLE KEYS */;
-INSERT INTO `tbprescricao` VALUES (9,4,17),(10,4,17),(11,4,17),(12,4,17),(13,4,17),(14,4,17),(15,4,17),(16,4,17),(17,4,17),(18,7,22);
+INSERT INTO `tbprescricao` VALUES (9,4,17,1),(10,4,17,1),(11,4,17,1),(12,4,17,1),(13,4,17,1),(14,4,17,1),(15,4,17,1),(16,4,17,1),(17,4,17,1),(18,7,22,1),(19,15,23,1),(20,15,24,1),(21,15,24,1),(22,15,24,1),(23,15,24,1),(24,15,25,1),(25,12,26,1),(26,15,27,1),(27,15,28,1),(28,4,29,1);
 /*!40000 ALTER TABLE `tbprescricao` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -685,7 +725,7 @@ CREATE TABLE `tbrespanamnesia` (
   PRIMARY KEY (`ID`),
   KEY `fk_tbRespAnamnesia_prontuario` (`Prontuario_ID`),
   CONSTRAINT `fk_tbRespAnamnesia_prontuario` FOREIGN KEY (`Prontuario_ID`) REFERENCES `prontuario` (`Prontuario`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -694,7 +734,7 @@ CREATE TABLE `tbrespanamnesia` (
 
 LOCK TABLES `tbrespanamnesia` WRITE;
 /*!40000 ALTER TABLE `tbrespanamnesia` DISABLE KEYS */;
-INSERT INTO `tbrespanamnesia` VALUES (1,'Encontrado com objeto cintilante enfiado dentro do cu, muito grande e esferico com \ndimençoes de 30cm de comprimento por 12.5cm de circunferencia, o paciente chega no\nhospital sem conseguir se locomover e com graves dores nas regioes baixas, diz o pa-\nciente que o mesmo estava em um treinamento para sentir a força do \"Corredor do\nclash Royale\", o Dr nao entendeu muito bem mas eu que não gostaria de estar na pele \ndesse paciente, pois dizem que esse corredor eh um negao forte.\n',19,'Possibilitamos ao paciente um calmante do mais potente para acalma-lo pois o mesmo \nnao parava de pensar no negao e como ele vai estraçalhar ele amanha, diz o mesmo ser \num jogo com personagens e que o \"Corredor\" seria o que mais lhe da medo, demos o cal-\nmante e um soro com dipirona diluida para diminuição da dor','Eu Dr.Jacinto Leite no Rego estou encaminhando o Paciente Marcos de Oliveira Lauro \npara uma consulta com o especielista Urologista e tambem para um procedimento cirur-\ngico no Bloco Cirurgico com extrema urgencia, tambem vou encaminha-lo nas proximas \nsemanas para o Caps pois parece que esta partida que o mesmo disse vai ser muito\nabaladora para o mesmo, portanto acreditaria que fosse melhor tambem uma avaliação\npsicologica'),(2,'',18,'',''),(3,'jacinto leita',21,'fewferwfe','wefewrfwerf'),(4,'nada',17,'nada','nada'),(5,'sedfsdfjiodsjfs',22,'sfgsdgsfdgdfg','ortopedista');
+INSERT INTO `tbrespanamnesia` VALUES (1,'Encontrado com objeto cintilante enfiado dentro do cu, muito grande e esferico com \ndimençoes de 30cm de comprimento por 12.5cm de circunferencia, o paciente chega no\nhospital sem conseguir se locomover e com graves dores nas regioes baixas, diz o pa-\nciente que o mesmo estava em um treinamento para sentir a força do \"Corredor do\nclash Royale\", o Dr nao entendeu muito bem mas eu que não gostaria de estar na pele \ndesse paciente, pois dizem que esse corredor eh um negao forte.\n',19,'Possibilitamos ao paciente um calmante do mais potente para acalma-lo pois o mesmo \nnao parava de pensar no negao e como ele vai estraçalhar ele amanha, diz o mesmo ser \num jogo com personagens e que o \"Corredor\" seria o que mais lhe da medo, demos o cal-\nmante e um soro com dipirona diluida para diminuição da dor','Eu Dr.Jacinto Leite no Rego estou encaminhando o Paciente Marcos de Oliveira Lauro \npara uma consulta com o especielista Urologista e tambem para um procedimento cirur-\ngico no Bloco Cirurgico com extrema urgencia, tambem vou encaminha-lo nas proximas \nsemanas para o Caps pois parece que esta partida que o mesmo disse vai ser muito\nabaladora para o mesmo, portanto acreditaria que fosse melhor tambem uma avaliação\npsicologica'),(2,'',18,'',''),(3,'jacinto leita',21,'fewferwfe','wefewrfwerf'),(4,'nada',17,'nada','nada'),(5,'sedfsdfjiodsjfs',22,'sfgsdgsfdgdfg','ortopedista'),(6,'O paciente esta com uma bacteria alojada em seus seios que se chama mastite tibetano ',23,'Será nescessario leva-lo ao bloco cirurgico para realizar o aumento das mamas','Encaminhamento para o cirurgiao geral '),(7,'ksjfdgujrdfbgiudfnbhgioudf',24,'rweferigfhndrouirjniuosjhfioswrhj','riohfioshjfiojfisjhfijsifjirfj'),(8,'tryw43we45rwserwertrttdy',25,'çl,gfdrtdfsrtfdxytjrdtykvghk','fdryutdtrxsgfdxcgfc vb '),(9,'',26,'','fff'),(10,'ruim',27,'Soro','Neurologista'),(11,'wqeafwsef',28,'swedfswedfdf','edwedwed');
 /*!40000 ALTER TABLE `tbrespanamnesia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -745,7 +785,7 @@ CREATE TABLE `tbrespclassificacao` (
   PRIMARY KEY (`ID`),
   KEY `fk_tbRespClassificacao_prontuario` (`Prontuario_ID`),
   CONSTRAINT `fk_tbRespClassificacao_prontuario` FOREIGN KEY (`Prontuario_ID`) REFERENCES `prontuario` (`Prontuario`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -754,7 +794,7 @@ CREATE TABLE `tbrespclassificacao` (
 
 LOCK TABLES `tbrespclassificacao` WRITE;
 /*!40000 ALTER TABLE `tbrespclassificacao` DISABLE KEYS */;
-INSERT INTO `tbrespclassificacao` VALUES (1,'3333',18,'3333','333','3333','muito mal','3333','3333','3333'),(2,'12/8',19,'75','12','36.5','Esta se sentindo muito mal, com o cu frocho','1.70','60','20'),(3,'20.8',21,'60','40','37.5','dores no cu','125','45','50'),(4,'44',22,'44','44','44','nao muito bem','44','44','44');
+INSERT INTO `tbrespclassificacao` VALUES (1,'3333',18,'3333','333','3333','muito mal','3333','3333','3333'),(2,'12/8',19,'75','12','36.5','Esta se sentindo muito mal','1.70','60','20'),(3,'20.8',21,'60','40','37.5','dores no braço','125','45','50'),(4,'44',22,'44','44','44','nao muito bem','44','44','44'),(5,'20/8',23,'8','5','37.8','Ele esta com dores na mama, e leves devaneio','2.05','285','40'),(6,'20',24,'222','2222','222','jroifnjsrnjfos','222','222','222'),(7,'3333',25,'22','22','2','mal','222','222','222'),(8,'333',26,'2','3','3','mal','3','3','3'),(9,'444',27,'4','4','4','Muito mal','4','4','4'),(10,'4',28,'4','4','4','bem','4','4','4'),(11,'4',29,'4','4','4','Mal','4','4','4');
 /*!40000 ALTER TABLE `tbrespclassificacao` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -799,7 +839,7 @@ CREATE TABLE `tbrespreceita` (
   PRIMARY KEY (`ID`),
   KEY `fk_prontuario` (`Prontuario_ID`),
   CONSTRAINT `fk_prontuario` FOREIGN KEY (`Prontuario_ID`) REFERENCES `prontuario` (`Prontuario`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -808,7 +848,7 @@ CREATE TABLE `tbrespreceita` (
 
 LOCK TABLES `tbrespreceita` WRITE;
 /*!40000 ALTER TABLE `tbrespreceita` DISABLE KEYS */;
-INSERT INTO `tbrespreceita` VALUES (1,17,'dipirona ------------- 50mg',NULL),(3,NULL,'aeidfnjspioargnodfikgnmdn\nsfdoipsgpdaiogmjipojm\nf\npodspofj\nsdf\nsdsd\nfopjg\nopdfjg\ndf\ndofsjg\nsdofjgd\nfogjd\nfgojsdf\ngojfdg\nodfjgfofdjg\nofdgojfdogfd\n','buceta'),(4,NULL,'ewihfubsdfiusdiofosde\nwef\nwefj\nwefjweoifjw\npoejfwe\nfw\neojwe\nfjw\ne\nfwefo\njweopf\nwpoejfwefpwe\n\n\nritalina ----------------- 1g','Malukos'),(5,NULL,'aefdsedfgersfgergqef\nrf\ner\nfer\ng\nedrf\ng\ndfgdf\ng\ndf\ng\ndf\ng\ndf\n','receita padrao'),(8,22,'jbhsdjvbsdjfbvsfdnovijnsdfikovnsdjkfnvlksdnvlksnvlknsdlfknvlks',NULL);
+INSERT INTO `tbrespreceita` VALUES (1,17,'dipirona ------------- 50mg',NULL),(3,NULL,'aeidfnjspioargnodfikgnmdn\nsfdoipsgpdaiogmjipojm\nf\npodspofj\nsdf\nsdsd\nfopjg\nopdfjg\ndf\ndofsjg\nsdofjgd\nfogjd\nfgojsdf\ngojfdg\nodfjgfofdjg\nofdgojfdogfd\n','Receita 1'),(4,NULL,'ewihfubsdfiusdiofosde\nwef\nwefj\nwefjweoifjw\npoejfwe\nfw\neojwe\nfjw\ne\nfwefo\njweopf\nwpoejfwefpwe\n\n\nritalina ----------------- 1g','Receita 2'),(5,NULL,'aefdsedfgersfgergqef\nrf\ner\nfer\ng\nedrf\ng\ndfgdf\ng\ndf\ng\ndf\ng\ndf\n','receita padrao'),(8,22,'jbhsdjvbsdjfbvsfdnovijnsdfikovnsdjkfnvlksdnvlksnvlknsdlfknvlks',NULL),(9,23,'\n\n\n\n-------------------Leite de Magnesia todo dia de manha e antes de dormir por um mes\n',NULL),(11,26,'kvmkem\nerle\n\n\nfdmf\nmr\nfmvçdfmvmdf\nvlçmfdçmv çfsdmvlfdlf ',NULL),(12,27,'sdufisudhfuisdhqa\nsafsdef9sujdp0fsd\nsd\nsed0fs',NULL),(13,27,'sdufisudhfuisdhqa\nsafsdef9sujdp0fsd\nsd\nsed0fs\nnabucetin',NULL),(14,NULL,'Nabucetin...................... 50mg','Receita para Louco '),(18,NULL,'sdfnsdnfksd........................50mg','receita de teste'),(23,27,'Nabucetin...................... 50mg',NULL),(24,28,'Nabucetin...................... 50mg\nritalina....................... 50mg',NULL),(25,NULL,'\n\nParacetamol 500mg – Tomar 1 comprimido a cada 8 horas por 5 dias.\n\nOmeprazol 20mg – Tomar 1 cápsula em jejum por 14 dias.\n\nDipirona 1g/ml (gotas) – Tomar 35 gotas em caso de febre acima de 38°C, máximo de 4 doses por dia.','Receita Padrao'),(26,NULL,'\n\nParacetamol 500mg – Tomar 1 comprimido a cada 8 horas por 5 dias.\n\nOmeprazol 20mg – Tomar 1 cápsula em jejum por 14 dias.\n\nDipirona 1g/ml (gotas) – Tomar 35 gotas em caso de febre acima de 38°C, máximo de 4 doses por dia.','receita Teste do sistema');
 /*!40000 ALTER TABLE `tbrespreceita` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -889,4 +929,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-03-17 18:26:02
+-- Dump completed on 2025-03-30 19:00:46

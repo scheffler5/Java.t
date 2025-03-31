@@ -14,6 +14,60 @@ public class PrescricaoModel {
     private int Prontuario;
     private Pacientes Paciente;
     private Prontuario prontuario;
+    private CDC cdc;
+    private String paci;
+    private int Baixada;
+
+    public String getPaci() {
+        return paci;
+    }
+
+    public void setPaci(String paci) {
+        this.paci = paci;
+    }
+    private String CDC;
+    private int Prontu;
+
+    public Pacientes getPaciente() {
+        return Paciente;
+    }
+
+    public void setPaciente(Pacientes Paciente) {
+        this.Paciente = Paciente;
+    }
+
+    public String getCDC() {
+        return CDC;
+    }
+
+    public void setCDC(String CDC) {
+        this.CDC = CDC;
+    }
+
+    public int getProntu() {
+        return Prontu;
+    }
+
+    public void setProntu(int Prontu) {
+        this.Prontu = Prontu;
+    }
+
+    public CDC getCdc() {
+        return cdc;
+    }
+
+    public void setCdc(CDC cdc) {
+        this.cdc = cdc;
+    }
+    
+
+    public int getBaixada() {
+        return Baixada;
+    }
+
+    public void setBaixada(int Baixada) {
+        this.Baixada = Baixada;
+    }
     public Prontuario getID_prontuario(){
         return prontuario;
     }

@@ -250,6 +250,7 @@ public class ProntuarioDAO {
                 + "LEFT JOIN classificacaorisco su ON p.classificacaorisco_id = su.ID "
                 + "JOIN preferencia pr ON p.Preferencia_ID = pr.ID "
                 + "WHERE TIMESTAMP(fluxopref.Data, fluxopref.Hora) >= NOW() - INTERVAL 24 HOUR "
+                + "AND p.Liberacao = 0 "
                 + "ORDER BY fluxopref.Data DESC, fluxopref.Hora DESC;";
 
         java.sql.PreparedStatement stmt = conn.prepareStatement(sql);
@@ -396,7 +397,8 @@ public class ProntuarioDAO {
                 + "JOIN dadospacientes pa ON p.Registro = pa.Registro "
                 + "LEFT JOIN classificacaorisco su ON p.classificacaorisco_id = su.ID "
                 + "JOIN preferencia pr ON p.Preferencia_ID = pr.ID "
-                + "WHERE pa.Nome LIKE ?"
+                + "WHERE pa.Nome LIKE ? "
+                + "AND p.Liberacao = 0 "
                 + "ORDER BY fluxopref.Data DESC, fluxopref.Hora DESC;";
 
         java.sql.PreparedStatement stmt = conn.prepareStatement(sql);
@@ -460,7 +462,8 @@ public List<Prontuario> FiltrarProntuario(String user) {
                 + "JOIN dadospacientes pa ON p.Registro = pa.Registro "
                 + "LEFT JOIN classificacaorisco su ON p.classificacaorisco_id = su.ID "
                 + "JOIN preferencia pr ON p.Preferencia_ID = pr.ID "
-                + "WHERE fluxopref.Prontuario LIKE ?"
+                + "WHERE fluxopref.Prontuario LIKE ? "
+                + "AND p.Liberacao = 0 "
                 + "ORDER BY fluxopref.Data DESC, fluxopref.Hora DESC;";
 
         java.sql.PreparedStatement stmt = conn.prepareStatement(sql);
@@ -524,7 +527,8 @@ public List<Prontuario> FiltrarProntuario(String user) {
                 + "JOIN dadospacientes pa ON p.Registro = pa.Registro "
                 + "LEFT JOIN classificacaorisco su ON p.classificacaorisco_id = su.ID "
                 + "JOIN preferencia pr ON p.Preferencia_ID = pr.ID "
-                + "WHERE pr.Nome LIKE 'Criança'"
+                + "WHERE pr.Nome LIKE 'Criança' "
+                + "AND p.Liberacao = 0 "
                 + "ORDER BY fluxopref.Data DESC, fluxopref.Hora DESC;";
 
         java.sql.PreparedStatement stmt = conn.prepareStatement(sql);
@@ -588,7 +592,8 @@ public List<Prontuario> FiltrarProntuario(String user) {
                 + "JOIN dadospacientes pa ON p.Registro = pa.Registro "
                 + "LEFT JOIN classificacaorisco su ON p.classificacaorisco_id = su.ID "
                 + "JOIN preferencia pr ON p.Preferencia_ID = pr.ID "
-                + "WHERE pr.Nome LIKE 'Idoso'"
+                + "WHERE pr.Nome LIKE 'Idoso' "
+                + "AND p.Liberacao = 0 "
                 + "ORDER BY fluxopref.Data DESC, fluxopref.Hora DESC;";
 
         java.sql.PreparedStatement stmt = conn.prepareStatement(sql);
@@ -652,7 +657,8 @@ public List<Prontuario> FiltrarProntuario(String user) {
                 + "JOIN dadospacientes pa ON p.Registro = pa.Registro "
                 + "LEFT JOIN classificacaorisco su ON p.classificacaorisco_id = su.ID "
                 + "JOIN preferencia pr ON p.Preferencia_ID = pr.ID "
-                + "WHERE pr.Nome LIKE 'Gravida'"
+                + "WHERE pr.Nome LIKE 'Gravida' "
+                + "AND p.Liberacao = 0 "
                 + "ORDER BY fluxopref.Data DESC, fluxopref.Hora DESC;";
 
         java.sql.PreparedStatement stmt = conn.prepareStatement(sql);
@@ -716,7 +722,8 @@ public List<Prontuario> FiltrarProntuario(String user) {
                 + "JOIN dadospacientes pa ON p.Registro = pa.Registro "
                 + "LEFT JOIN classificacaorisco su ON p.classificacaorisco_id = su.ID "
                 + "JOIN preferencia pr ON p.Preferencia_ID = pr.ID "
-                + "WHERE pr.Nome LIKE 'Adulto'"
+                + "WHERE pr.Nome LIKE 'Adulto' "
+                + "AND p.Liberacao = 0 "
                 + "ORDER BY fluxopref.Data DESC, fluxopref.Hora DESC;";
 
         java.sql.PreparedStatement stmt = conn.prepareStatement(sql);
@@ -780,7 +787,8 @@ public List<Prontuario> FiltrarProntuario(String user) {
                 + "JOIN dadospacientes pa ON p.Registro = pa.Registro "
                 + "LEFT JOIN classificacaorisco su ON p.classificacaorisco_id = su.ID "
                 + "JOIN preferencia pr ON p.Preferencia_ID = pr.ID "
-                + "WHERE su.classificacao LIKE 'Emergencia'"
+                + "WHERE su.classificacao LIKE 'Emergencia' "
+                + "AND p.Liberacao = 0 "
                 + "ORDER BY fluxopref.Data DESC, fluxopref.Hora DESC;";
 
         java.sql.PreparedStatement stmt = conn.prepareStatement(sql);
@@ -844,7 +852,8 @@ public List<Prontuario> FiltrarUrgente() {
                 + "JOIN dadospacientes pa ON p.Registro = pa.Registro "
                 + "LEFT JOIN classificacaorisco su ON p.classificacaorisco_id = su.ID "
                 + "JOIN preferencia pr ON p.Preferencia_ID = pr.ID "
-                + "WHERE su.classificacao LIKE 'Urgente'"
+                + "WHERE su.classificacao LIKE 'Urgente' "
+                + "AND p.Liberacao = 0 "
                 + "ORDER BY fluxopref.Data DESC, fluxopref.Hora DESC;";
 
         java.sql.PreparedStatement stmt = conn.prepareStatement(sql);
@@ -908,7 +917,8 @@ public List<Prontuario> FiltrarPoucoUrgente() {
                 + "JOIN dadospacientes pa ON p.Registro = pa.Registro "
                 + "LEFT JOIN classificacaorisco su ON p.classificacaorisco_id = su.ID "
                 + "JOIN preferencia pr ON p.Preferencia_ID = pr.ID "
-                + "WHERE su.classificacao LIKE 'Pouco Urgente'"
+                + "WHERE su.classificacao LIKE 'Pouco Urgente' "
+                + "AND p.Liberacao = 0 "
                 + "ORDER BY fluxopref.Data DESC, fluxopref.Hora DESC;";
 
         java.sql.PreparedStatement stmt = conn.prepareStatement(sql);
@@ -972,7 +982,8 @@ public List<Prontuario> FiltrarNaoUrgente() {
                 + "JOIN dadospacientes pa ON p.Registro = pa.Registro "
                 + "LEFT JOIN classificacaorisco su ON p.classificacaorisco_id = su.ID "
                 + "JOIN preferencia pr ON p.Preferencia_ID = pr.ID "
-                + "WHERE su.classificacao LIKE 'Nao Urgente'"
+                + "WHERE su.classificacao LIKE 'Nao Urgente' "
+                + "AND p.Liberacao = 0 "
                 + "ORDER BY fluxopref.Data DESC, fluxopref.Hora DESC;";
 
         java.sql.PreparedStatement stmt = conn.prepareStatement(sql);
@@ -1037,6 +1048,7 @@ public List<Prontuario> FiltrarNaoClassificado() {
                 + "LEFT JOIN classificacaorisco su ON p.classificacaorisco_id = su.ID "
                 + "JOIN preferencia pr ON p.Preferencia_ID = pr.ID "
                 + "WHERE p.classificacaorisco_id IS NULL "
+                + "AND p.Liberacao = 0 "
                 + "ORDER BY fluxopref.Data DESC, fluxopref.Hora DESC;";
 
         java.sql.PreparedStatement stmt = conn.prepareStatement(sql);

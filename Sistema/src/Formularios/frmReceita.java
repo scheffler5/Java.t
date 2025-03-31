@@ -16,11 +16,16 @@ import javax.swing.ImageIcon;
  */
 public class frmReceita extends javax.swing.JFrame {
     private int prontuario;
+    private ListarReceitas receita;
+    
     public void atualizarCampos(int prontuario) {
         this.prontuario = prontuario;
+        
+        
     }
     public frmReceita() {
         initComponents();
+        
     }
 
     /**
@@ -54,6 +59,7 @@ public class frmReceita extends javax.swing.JFrame {
         setTitle("Receita Medica");
         setResizable(false);
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 51));
         jButton1.setText("Pegar receitas Padrao");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,8 +67,15 @@ public class frmReceita extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(255, 0, 0));
         jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
+        jButton3.setBackground(new java.awt.Color(0, 255, 0));
         jButton3.setText("Gravar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,6 +83,7 @@ public class frmReceita extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setBackground(new java.awt.Color(0, 255, 102));
         jButton4.setText("Criar receitas Padrao");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -200,10 +214,15 @@ public class frmReceita extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ListarReceitas rec = new ListarReceitas();
-        rec.setVisible(true);
+        receita = new ListarReceitas();
+        receita.atualizarCampos(prontuario);
+        receita.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

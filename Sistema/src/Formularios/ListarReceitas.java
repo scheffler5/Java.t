@@ -35,9 +35,14 @@ public class ListarReceitas extends javax.swing.JFrame {
 
      });
      }}
-    frmReceita dado = new frmReceita();
+    private int prontuario;
+    
+    public void atualizarCampos(int prontuario) {
+        this.prontuario = prontuario;
+        
+    }
+    
     public ListarReceitas() {
-        this.dado= dado;
         initComponents();
     }
 
@@ -92,6 +97,11 @@ public class ListarReceitas extends javax.swing.JFrame {
         jScrollPane1.setViewportView(Tabela);
 
         jButton2.setText("OK");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Titulo");
@@ -161,7 +171,8 @@ public class ListarReceitas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabelaMouseClicked
-        if (dado == null) {
+        frmReceita receita = new frmReceita();
+        if (receita == null) {
         JOptionPane.showMessageDialog(this, "Erro: Tela de cadastro não foi inicializada!");
         return;
     }
@@ -171,10 +182,11 @@ public class ListarReceitas extends javax.swing.JFrame {
         RespReceitaDAO dao = new RespReceitaDAO();
         obj = dao.BuscarTexto(Tabela.getValueAt(row, 1).toString());
         if(obj.getTitulo()!= null){
-            dado.txtTexto.setText(obj.getTexto());
+            receita.txtTexto.setText(obj.getTexto());
+            receita.atualizarCampos(prontuario);
             
          
-         dado.setVisible(true);
+         receita.setVisible(true);
          this.dispose();
      }}
     }//GEN-LAST:event_TabelaMouseClicked
@@ -214,6 +226,10 @@ public class ListarReceitas extends javax.swing.JFrame {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         Listar();
     }//GEN-LAST:event_formWindowActivated
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

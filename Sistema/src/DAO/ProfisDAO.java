@@ -21,8 +21,8 @@ public class ProfisDAO {
     }
     public void Salvar(Profi obj){
         try {
-            String sql = "insert into profissionais(Nome,CartaoSUS,IDCredencial,IDespecialidade,DataNascimento,CPF,Função)"
-                    + "Values(?,?,?,?,?,?,?)";
+            String sql = "insert into profissionais(Nome,CartaoSUS,IDCredencial,IDespecialidade,DataNascimento,CPF,Função, Salario,Ativo)"
+                    + "Values(?,?,?,?,?,?,?,?,?)";
             java.sql.PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, obj.getNome());
             stmt.setString(2, obj.getCartaoSUS());
@@ -31,6 +31,9 @@ public class ProfisDAO {
             stmt.setString(5, obj.getDataNascimento());
             stmt.setString(6, obj.getCPF());
             stmt.setString(7, obj.getFuncao());
+            stmt.setFloat(8, obj.getSalario());
+            stmt.setInt(9, obj.getSituacao());
+            
             
             stmt.execute();
             stmt.close();
@@ -41,7 +44,7 @@ public class ProfisDAO {
     }
     public void Editar(Profi obj){
         try {
-            String sql = "update profissionais set Nome=?,CartaoSUS=?,IDCredencial=?,IDespecialidade,DataNascimento=?,CPF=?,Função=?";
+            String sql = "update profissionais set Nome=?, CartaoSUS=?, IDCredencial=?, IDespecialidade=?, DataNascimento=?, CPF=?, Função=?, Salario=?, Ativo=? where IDProf=?";
             java.sql.PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, obj.getNome());
             stmt.setString(2, obj.getCartaoSUS());
@@ -50,7 +53,10 @@ public class ProfisDAO {
             stmt.setString(5, obj.getDataNascimento());
             stmt.setString(6, obj.getCPF());
             stmt.setString(7, obj.getFuncao());
-            stmt.setInt(8, obj.getIDProf());
+            stmt.setFloat(8, obj.getSalario());
+            stmt.setInt(9, obj.getSituacao());
+            
+            stmt.setInt(10, obj.getIDProf());
             
             
             stmt.execute();
@@ -143,6 +149,8 @@ public class ProfisDAO {
                 obj.setIDCredencial(rs.getString("IDCredencial"));
                 obj.setIDespecialidade(rs.getString("IDespecialidade"));
                 obj.setFuncao(rs.getString("Função"));
+                obj.setSalario(rs.getFloat("Salario"));
+                obj.setSituacao(rs.getInt("Ativo"));
                 lista.add(obj);
             }
             return lista;
@@ -151,6 +159,63 @@ public class ProfisDAO {
         }
         return null;
     } 
+    public Profi BuscarProfTudo(String user){
+        try {
+            String aql = "SELECT * FROM profissionais WHERE CPF like  ? ";
+            java.sql.PreparedStatement stmt = conn.prepareStatement(aql);
+            stmt.setString(1,user);
+            ResultSet rs = stmt.executeQuery();
+            Profi obj = new Profi();
+            if(rs.next()){
+                obj.setCPF(rs.getString("CPF"));
+                obj.setIDProf(rs.getInt("IDProf"));
+             
+                obj.setNome(rs.getString("Nome"));
+                obj.setDataNascimento(rs.getString("DataNascimento"));
+                obj.setCartaoSUS(rs.getString("CartaoSUS"));
+                
+                obj.setIDCredencial(rs.getString("IDCredencial"));
+                obj.setIDespecialidade(rs.getString("IDespecialidade"));
+                obj.setFuncao(rs.getString("Função"));
+                obj.setSalario(rs.getFloat("Salario"));
+                obj.setSituacao(rs.getInt("Ativo"));
+                
+                
+            }
+            return obj;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"erro ao Buscar Cliente  "+ e);
+        }
+        return null;
+    }
+    public List<Profi>listarTudo(){
+        List<Profi> lista = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM profissionais ";
+            java.sql.PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                Profi obj = new Profi();
+                obj.setIDProf(rs.getInt("IDProf"));
+                obj.setNome(rs.getString("Nome"));
+                obj.setDataNascimento(rs.getString("DataNascimento"));
+                obj.setCartaoSUS(rs.getString("CartaoSUS"));
+                obj.setCPF(rs.getString("CPF"));
+                obj.setIDCredencial(rs.getString("IDCredencial"));
+                obj.setIDespecialidade(rs.getString("IDespecialidade"));
+                obj.setFuncao(rs.getString("Função"));
+                obj.setSalario(rs.getFloat("Salario"));
+                obj.setSituacao(rs.getInt("Ativo"));
+                
+                lista.add(obj);
+            }
+            return lista;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao criar a lista"+e);
+        }
+        return null;
+    }
     
 
 }

@@ -14,6 +14,24 @@ public class Prescricao {
     private Integer Antibioticos;
     private int Prescricao;
     private int Frequencia;
+    private String medi;
+    private String anti;
+
+    public String getMedi() {
+        return medi;
+    }
+
+    public void setMedi(String medi) {
+        this.medi = medi;
+    }
+
+    public String getAnti() {
+        return anti;
+    }
+
+    public void setAnti(String anti) {
+        this.anti = anti;
+    }
 
     public int getID() {
         return ID;

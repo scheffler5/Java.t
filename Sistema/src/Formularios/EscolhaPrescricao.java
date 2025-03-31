@@ -4,9 +4,10 @@
  */
 package Formularios;
 
+import DAO.PrescricaoDAO;
 import DAO.PrescricaoModelDAO;
+import Model.Prescricao;
 import Model.PrescricaoModel;
-import Model.Prontuario;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.List;
@@ -20,8 +21,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class EscolhaPrescricao extends javax.swing.JFrame {
     private int prescricao;
-
-    public int getPrescricao() {
+    private frmPrescricao dado;
+    public int getPrescricao(frmPrescricao dado) {
+        this.dado = dado;
         return prescricao;
     }
 
@@ -80,6 +82,8 @@ public class EscolhaPrescricao extends javax.swing.JFrame {
         Tabela = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Lista de Prescriçoes ");
@@ -87,6 +91,12 @@ public class EscolhaPrescricao extends javax.swing.JFrame {
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
+            }
+        });
+
+        jScrollPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jScrollPane1MouseClicked(evt);
             }
         });
 
@@ -98,8 +108,14 @@ public class EscolhaPrescricao extends javax.swing.JFrame {
                 "COD ", "Prontuario", "Nome Paciente"
             }
         ));
+        Tabela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TabelaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(Tabela);
 
+        jButton1.setBackground(new java.awt.Color(51, 255, 51));
         jButton1.setText("Criar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,7 +123,29 @@ public class EscolhaPrescricao extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(255, 0, 0));
         jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setBackground(new java.awt.Color(153, 0, 0));
+        jButton3.setText("Excluir");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setBackground(new java.awt.Color(255, 255, 51));
+        jButton4.setText("Editar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -115,12 +153,16 @@ public class EscolhaPrescricao extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 789, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 790, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(285, 285, 285)
+                .addGap(167, 167, 167)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(10, 10, 10)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -132,7 +174,9 @@ public class EscolhaPrescricao extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -184,6 +228,58 @@ public class EscolhaPrescricao extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jScrollPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseClicked
+        
+    }//GEN-LAST:event_jScrollPane1MouseClicked
+
+    private void TabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabelaMouseClicked
+         
+    }//GEN-LAST:event_TabelaMouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        int row = Tabela.getSelectedRow();
+        dado = new frmPrescricao();
+
+    if (row >= 0) { 
+        String prescricaoID = Tabela.getValueAt(row, 0).toString();
+        PrescricaoModel obj = new PrescricaoModel();
+        PrescricaoModelDAO dao = new PrescricaoModelDAO();
+        int prescricaoIDInt = 0;
+        prescricaoIDInt = Integer.parseInt(prescricaoID);
+        obj.setID_prescricao(prescricaoIDInt);
+        dao.Excluir(obj);
+    }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        int row = Tabela.getSelectedRow();
+            dado = new frmPrescricao();
+
+            if (row >= 0) { 
+                String prescricaoID = Tabela.getValueAt(row, 0).toString();
+                PrescricaoDAO dao = new PrescricaoDAO();
+
+                List<Prescricao> listaMedicamentos = dao.listarMedicamentos(prescricaoID);
+                List<Prescricao> listaAntibioticos = dao.listarAntibioticos(prescricaoID);
+                dado.atualizarCampos(paciente, prontuario);
+                dado.setPrescricaoID(prescricaoID);
+               int prescricaoIDInt = 0;
+
+               prescricaoIDInt = Integer.parseInt(prescricaoID);
+                dado.prescclicar(prescricaoIDInt);
+                dado.atualizarpresc(prescricaoIDInt);
+                dado.preencherTabelaMedicamentos(listaMedicamentos);
+                dado.preencherTabelaAntibioticos(listaAntibioticos);
+
+                dado.setVisible(true);
+                this.dispose();
+            }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -223,6 +319,8 @@ public class EscolhaPrescricao extends javax.swing.JFrame {
     private javax.swing.JTable Tabela;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

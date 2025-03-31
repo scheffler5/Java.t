@@ -16,6 +16,24 @@ public class Profi {
     private String IDespecialidade;
     private String DataNascimento;
     private String CPF;
+    private Float Salario;
+    private int Situacao;
+
+    public int getSituacao() {
+        return Situacao;
+    }
+
+    public void setSituacao(int Situacao) {
+        this.Situacao = Situacao;
+    }
+
+    public Float getSalario() {
+        return Salario;
+    }
+
+    public void setSalario(Float Salario) {
+        this.Salario = Salario;
+    }
 
     public int getIDProf() {
         return IDProf;

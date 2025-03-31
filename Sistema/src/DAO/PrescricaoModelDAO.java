@@ -4,24 +4,16 @@
  */
 package DAO;
 
-import Model.Classificacao;
-import Model.Convenio;
-import Model.FluxoPref;
+import Model.CDC;
 import Model.Pacientes;
-import Model.Preferencia;
 import Model.PrescricaoModel;
 import Model.Prontuario;
 import SYS.JDBC.ConexaoBanco;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import javax.swing.JOptionPane;
 
 /**
@@ -109,4 +101,95 @@ public class PrescricaoModelDAO {
     }
     return lista;
 }
+    
+    public void Excluir(PrescricaoModel obj){
+        try {
+            String sql = "delete from tbprescricao where ID_Prescricao=?";
+            java.sql.PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, obj.getID_prescricao());
+            stmt.execute();
+            stmt.close();
+            JOptionPane.showMessageDialog(null,"Usuario Excluido com Sucesso");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Erro ao Excluir o Usuario"+e);
+        }
+    }
+    public List<PrescricaoModel> listarTudo() {
+    List<PrescricaoModel> lista = new ArrayList<>();
+    String sql = "SELECT " 
+         + "pre.Prontuario_ID, "
+         + "pa.Nome AS PacienteNome, "
+         + "pre.ID_Prescricao, "
+         + "c.CDC, "
+         + "pre.CDC_ID "
+         + "FROM tbprescricao pre "  
+         + "JOIN prontuario p ON p.Prontuario = pre.Prontuario_ID "
+         + "JOIN dadospacientes pa ON p.Registro = pa.Registro "
+         + "JOIN cdc c ON pre.CDC_ID = c.ID "
+         + "WHERE pre.Baixada = 0 "
+         + "ORDER BY pre.ID_Prescricao DESC;"; 
+
+    try (java.sql.PreparedStatement stmt = conn.prepareStatement(sql)) {
+        
+
+        try (ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {  // Apenas um while correto
+                Prontuario obj = new Prontuario();
+                Pacientes dado = new Pacientes();
+                PrescricaoModel mo = new PrescricaoModel();
+                CDC cdc = new CDC();
+
+                mo.setProntuario(rs.getInt("pre.Prontuario_ID"));
+                mo.setID_prescricao(rs.getInt("ID_Prescricao"));
+                mo.setPaci(rs.getString("PacienteNome"));
+                mo.setCDC(rs.getString("c.CDC"));
+                mo.setCDC_ID(rs.getInt("CDC_ID"));
+                
+
+                
+
+                lista.add(mo);
+            }
+        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Erro ao criar a lista: " + e);
+        e.printStackTrace(); 
+    }
+    return lista;
+}
+    public void Editar(PrescricaoModel obj){
+        try {
+            String sql = "update tbprescricao set Baixada=? WHERE ID_Prescricao=?";
+            java.sql.PreparedStatement stmt = conn.prepareStatement(sql);
+            
+            stmt.setInt(1, obj.getBaixada());
+            stmt.setInt(2, obj.getID_prescricao());
+            
+            
+            stmt.execute();
+            stmt.close();
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "erro ao Liberar o Paciente"+e);
+        }
+    }
+    public PrescricaoModel BuscarBaixa(int user){
+        try {
+            String aql = "Select * from tbprescricao where ID_Prescricao = ?";
+            java.sql.PreparedStatement stmt = conn.prepareStatement(aql);
+            stmt.setInt(1,user);
+            ResultSet rs = stmt.executeQuery();
+            PrescricaoModel obj = new PrescricaoModel();
+            if(rs.next()){
+                obj.setID_prescricao(rs.getInt("ID_Prescricao"));
+                obj.setBaixada(rs.getInt("Baixada"));
+                
+                
+            }
+            return obj;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"erro ao Buscar Cliente  "+ e);
+        }
+        return null;
+    }
 }
