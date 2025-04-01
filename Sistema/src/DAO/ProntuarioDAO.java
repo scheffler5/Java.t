@@ -190,30 +190,30 @@ public class ProntuarioDAO {
             String classificacao = rs.getString("classificacao");
             cla.setClassificacao(classificacao != null ? classificacao : "Não Classificado");
 
-            // Recuperando Data e Hora separadamente
+            
             java.sql.Date data = rs.getDate("LastDate");
             java.sql.Time hora = rs.getTime("LastTime");
 
-            // Convertendo java.sql.Date para java.time.LocalDate
+           
             LocalDate localDate = data != null ? data.toLocalDate() : null;
 
-            // Convertendo java.sql.Time para java.time.LocalTime
+            
             LocalTime localTime = hora != null ? hora.toLocalTime() : null;
 
-            // Combinando Data e Hora em um LocalDateTime
+          
             if (localDate != null && localTime != null) {
                 LocalDateTime dataHora = LocalDateTime.of(localDate, localTime);
-                flu.setDate(dataHora); // Define a data e hora no objeto FluxoPref
+                flu.setDate(dataHora); 
             }
 
-            // Calculando tempo de espera em horas
-            LocalDateTime dataAtual = LocalDateTime.now(); // Data e hora atuais
-            LocalDateTime dataEntrada = flu.getDate(); // Data e hora de entrada
+          
+            LocalDateTime dataAtual = LocalDateTime.now(); 
+            LocalDateTime dataEntrada = flu.getDate(); 
 
             if (dataEntrada != null) {
                 long diffInMillies = Duration.between(dataEntrada, dataAtual).toMillis();
-                long diffInHours = TimeUnit.MILLISECONDS.toMinutes(diffInMillies); // Convertendo para horas
-                obj.setTempoEspera(diffInHours); // Definindo o tempo de espera em horas
+                long diffInHours = TimeUnit.MILLISECONDS.toMinutes(diffInMillies);
+                obj.setTempoEspera(diffInHours); 
             }
 
             obj.setDado(dado);
@@ -224,9 +224,9 @@ public class ProntuarioDAO {
             lista.add(obj);
         }
     } catch (Exception e) {
-        // Logar a exceção ou lançar uma exceção personalizada
+        
         JOptionPane.showMessageDialog(null, "Erro ao criar a lista: " + e);
-        e.printStackTrace(); // Para depuração
+        e.printStackTrace(); 
     }
     return lista;
 }
@@ -276,11 +276,11 @@ public class ProntuarioDAO {
 
             if (data != null && hora != null) {
                 LocalDateTime dataEntrada = LocalDateTime.of(data.toLocalDate(), hora.toLocalTime());
-                flu.setDate(dataEntrada); // Define a data e hora no objeto FluxoPref
+                flu.setDate(dataEntrada); 
 
-                // Calculando tempo de espera em minutos
+               
                 long diffInMinutes = Duration.between(dataEntrada, LocalDateTime.now()).toMinutes();
-                obj.setTempoEspera(diffInMinutes); // Agora define o tempo de espera em minutos
+                obj.setTempoEspera(diffInMinutes); 
             }
 
             obj.setDado(dado);
@@ -336,22 +336,22 @@ public class ProntuarioDAO {
                 String classificacao = rs.getString("classificacao");
                 cla.setClassificacao(classificacao != null ? classificacao : "Não Classificado");
 
-                // 🟢 Pegando a data de nascimento (String) do banco e convertendo para LocalDate
+                
                 String dataNascimentoStr = rs.getString("Nascimento");
                 if (dataNascimentoStr != null && !dataNascimentoStr.isEmpty()) {
-                    // Definindo o formato correto da data
+                   
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                     
-                    // Converte a String para LocalDate
+                    
                     LocalDate dataNascimento = LocalDate.parse(dataNascimentoStr, formatter);
                     
-                    // 🟢 Calculando a idade
+                    
                     int idade = Period.between(dataNascimento, LocalDate.now()).getYears();
 
-                    // 🟢 Convertendo idade para String para exibição na tabela
+                    
                     dado.setIdade(String.valueOf(idade));
                 } else {
-                    dado.setIdade("Desconhecido"); // Caso a data de nascimento seja nula ou inválida
+                    dado.setIdade("Desconhecido"); 
                 }
 
                 java.sql.Date data = rs.getDate("LastDate");
@@ -359,9 +359,9 @@ public class ProntuarioDAO {
 
                 if (data != null && hora != null) {
                     LocalDateTime dataEntrada = LocalDateTime.of(data.toLocalDate(), hora.toLocalTime());
-                    flu.setDate(dataEntrada); // Define a data e hora no objeto FluxoPref
+                    flu.setDate(dataEntrada); 
 
-                    // 🟢 Calculando tempo de espera em minutos
+                   
                     long diffInMinutes = Duration.between(dataEntrada, LocalDateTime.now()).toMinutes();
                     obj.setTempoEspera(diffInMinutes);
                 }
@@ -424,11 +424,11 @@ public class ProntuarioDAO {
 
             if (data != null && hora != null) {
                 LocalDateTime dataEntrada = LocalDateTime.of(data.toLocalDate(), hora.toLocalTime());
-                flu.setDate(dataEntrada); // Define a data e hora no objeto FluxoPref
+                flu.setDate(dataEntrada); 
 
-                // Calculando tempo de espera em minutos
+                
                 long diffInMinutes = Duration.between(dataEntrada, LocalDateTime.now()).toMinutes();
-                obj.setTempoEspera(diffInMinutes); // Agora define o tempo de espera em minutos
+                obj.setTempoEspera(diffInMinutes); 
             }
 
             obj.setDado(dado);
@@ -489,11 +489,11 @@ public List<Prontuario> FiltrarProntuario(String user) {
 
             if (data != null && hora != null) {
                 LocalDateTime dataEntrada = LocalDateTime.of(data.toLocalDate(), hora.toLocalTime());
-                flu.setDate(dataEntrada); // Define a data e hora no objeto FluxoPref
+                flu.setDate(dataEntrada); 
 
-                // Calculando tempo de espera em minutos
+                
                 long diffInMinutes = Duration.between(dataEntrada, LocalDateTime.now()).toMinutes();
-                obj.setTempoEspera(diffInMinutes); // Agora define o tempo de espera em minutos
+                obj.setTempoEspera(diffInMinutes); 
             }
 
             obj.setDado(dado);
@@ -554,11 +554,11 @@ public List<Prontuario> FiltrarProntuario(String user) {
 
             if (data != null && hora != null) {
                 LocalDateTime dataEntrada = LocalDateTime.of(data.toLocalDate(), hora.toLocalTime());
-                flu.setDate(dataEntrada); // Define a data e hora no objeto FluxoPref
+                flu.setDate(dataEntrada); 
 
-                // Calculando tempo de espera em minutos
+            
                 long diffInMinutes = Duration.between(dataEntrada, LocalDateTime.now()).toMinutes();
-                obj.setTempoEspera(diffInMinutes); // Agora define o tempo de espera em minutos
+                obj.setTempoEspera(diffInMinutes); 
             }
 
             obj.setDado(dado);
@@ -619,11 +619,11 @@ public List<Prontuario> FiltrarProntuario(String user) {
 
             if (data != null && hora != null) {
                 LocalDateTime dataEntrada = LocalDateTime.of(data.toLocalDate(), hora.toLocalTime());
-                flu.setDate(dataEntrada); // Define a data e hora no objeto FluxoPref
+                flu.setDate(dataEntrada); 
 
-                // Calculando tempo de espera em minutos
+                
                 long diffInMinutes = Duration.between(dataEntrada, LocalDateTime.now()).toMinutes();
-                obj.setTempoEspera(diffInMinutes); // Agora define o tempo de espera em minutos
+                obj.setTempoEspera(diffInMinutes); 
             }
 
             obj.setDado(dado);
@@ -684,11 +684,11 @@ public List<Prontuario> FiltrarProntuario(String user) {
 
             if (data != null && hora != null) {
                 LocalDateTime dataEntrada = LocalDateTime.of(data.toLocalDate(), hora.toLocalTime());
-                flu.setDate(dataEntrada); // Define a data e hora no objeto FluxoPref
+                flu.setDate(dataEntrada); 
 
-                // Calculando tempo de espera em minutos
+                
                 long diffInMinutes = Duration.between(dataEntrada, LocalDateTime.now()).toMinutes();
-                obj.setTempoEspera(diffInMinutes); // Agora define o tempo de espera em minutos
+                obj.setTempoEspera(diffInMinutes);
             }
 
             obj.setDado(dado);
@@ -749,11 +749,11 @@ public List<Prontuario> FiltrarProntuario(String user) {
 
             if (data != null && hora != null) {
                 LocalDateTime dataEntrada = LocalDateTime.of(data.toLocalDate(), hora.toLocalTime());
-                flu.setDate(dataEntrada); // Define a data e hora no objeto FluxoPref
+                flu.setDate(dataEntrada); 
 
-                // Calculando tempo de espera em minutos
+                
                 long diffInMinutes = Duration.between(dataEntrada, LocalDateTime.now()).toMinutes();
-                obj.setTempoEspera(diffInMinutes); // Agora define o tempo de espera em minutos
+                obj.setTempoEspera(diffInMinutes); 
             }
 
             obj.setDado(dado);
@@ -814,11 +814,11 @@ public List<Prontuario> FiltrarProntuario(String user) {
 
             if (data != null && hora != null) {
                 LocalDateTime dataEntrada = LocalDateTime.of(data.toLocalDate(), hora.toLocalTime());
-                flu.setDate(dataEntrada); // Define a data e hora no objeto FluxoPref
+                flu.setDate(dataEntrada); 
 
-                // Calculando tempo de espera em minutos
+               
                 long diffInMinutes = Duration.between(dataEntrada, LocalDateTime.now()).toMinutes();
-                obj.setTempoEspera(diffInMinutes); // Agora define o tempo de espera em minutos
+                obj.setTempoEspera(diffInMinutes);
             }
 
             obj.setDado(dado);
@@ -879,11 +879,11 @@ public List<Prontuario> FiltrarUrgente() {
 
             if (data != null && hora != null) {
                 LocalDateTime dataEntrada = LocalDateTime.of(data.toLocalDate(), hora.toLocalTime());
-                flu.setDate(dataEntrada); // Define a data e hora no objeto FluxoPref
+                flu.setDate(dataEntrada);
 
-                // Calculando tempo de espera em minutos
+                
                 long diffInMinutes = Duration.between(dataEntrada, LocalDateTime.now()).toMinutes();
-                obj.setTempoEspera(diffInMinutes); // Agora define o tempo de espera em minutos
+                obj.setTempoEspera(diffInMinutes);
             }
 
             obj.setDado(dado);
@@ -944,11 +944,11 @@ public List<Prontuario> FiltrarPoucoUrgente() {
 
             if (data != null && hora != null) {
                 LocalDateTime dataEntrada = LocalDateTime.of(data.toLocalDate(), hora.toLocalTime());
-                flu.setDate(dataEntrada); // Define a data e hora no objeto FluxoPref
+                flu.setDate(dataEntrada); 
 
-                // Calculando tempo de espera em minutos
+               
                 long diffInMinutes = Duration.between(dataEntrada, LocalDateTime.now()).toMinutes();
-                obj.setTempoEspera(diffInMinutes); // Agora define o tempo de espera em minutos
+                obj.setTempoEspera(diffInMinutes); 
             }
 
             obj.setDado(dado);
@@ -1009,11 +1009,11 @@ public List<Prontuario> FiltrarNaoUrgente() {
 
             if (data != null && hora != null) {
                 LocalDateTime dataEntrada = LocalDateTime.of(data.toLocalDate(), hora.toLocalTime());
-                flu.setDate(dataEntrada); // Define a data e hora no objeto FluxoPref
+                flu.setDate(dataEntrada); 
 
-                // Calculando tempo de espera em minutos
+               
                 long diffInMinutes = Duration.between(dataEntrada, LocalDateTime.now()).toMinutes();
-                obj.setTempoEspera(diffInMinutes); // Agora define o tempo de espera em minutos
+                obj.setTempoEspera(diffInMinutes); 
             }
 
             obj.setDado(dado);
@@ -1075,11 +1075,11 @@ public List<Prontuario> FiltrarNaoClassificado() {
 
             if (data != null && hora != null) {
                 LocalDateTime dataEntrada = LocalDateTime.of(data.toLocalDate(), hora.toLocalTime());
-                flu.setDate(dataEntrada); // Define a data e hora no objeto FluxoPref
+                flu.setDate(dataEntrada); 
 
-                // Calculando tempo de espera em minutos
+                
                 long diffInMinutes = Duration.between(dataEntrada, LocalDateTime.now()).toMinutes();
-                obj.setTempoEspera(diffInMinutes); // Agora define o tempo de espera em minutos
+                obj.setTempoEspera(diffInMinutes); 
             }
 
             obj.setDado(dado);

@@ -77,10 +77,10 @@ public class PrescricaoModelDAO {
          + "ORDER BY pre.ID_Prescricao DESC;"; 
 
     try (java.sql.PreparedStatement stmt = conn.prepareStatement(sql)) {
-        stmt.setInt(1, prontuario);  // Definindo o valor do parâmetro
+        stmt.setInt(1, prontuario);  
 
         try (ResultSet rs = stmt.executeQuery()) {
-            while (rs.next()) {  // Apenas um while correto
+            while (rs.next()) {  
                 Prontuario obj = new Prontuario();
                 Pacientes dado = new Pacientes();
                 PrescricaoModel mo = new PrescricaoModel();
@@ -133,7 +133,7 @@ public class PrescricaoModelDAO {
         
 
         try (ResultSet rs = stmt.executeQuery()) {
-            while (rs.next()) {  // Apenas um while correto
+            while (rs.next()) { 
                 Prontuario obj = new Prontuario();
                 Pacientes dado = new Pacientes();
                 PrescricaoModel mo = new PrescricaoModel();

@@ -6,9 +6,9 @@ package DAO;
 
 import Model.SolicitacaoExames;
 import SYS.JDBC.ConexaoBanco;
-import java.sql.Connection;           // Para usar a conexão com o banco de dados
-import java.sql.PreparedStatement;    // Para usar o PreparedStatement
-import java.sql.SQLException;         // Para capturar exceções SQL
+import java.sql.Connection;           
+import java.sql.PreparedStatement;    
+import java.sql.SQLException;         
 import javax.swing.JOptionPane;
 
 /**

@@ -148,7 +148,7 @@ public Prescricao BuscarPorAntibiotico(int prescricao, int antibiotico) {
                + "WHERE p.Prescricao = ? AND p.Antibioticos IS NOT NULL AND p.Medicamentos IS NULL";
     
     try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-        stmt.setString(1, prescricaoID); // Agora está correto!
+        stmt.setString(1, prescricaoID);
         try (ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
                 Prescricao obj = new Prescricao();
